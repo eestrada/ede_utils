@@ -1,5 +1,4 @@
 #include <iostream>
-#include "header.hpp"
 #include "edelist.hpp"
 #include "nullstream.hpp"
 
