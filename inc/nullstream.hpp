@@ -46,7 +46,7 @@ public:
         std::basic_ios<cT, traits>(&m_sbuf),
         std::basic_ostream<cT, traits>(&m_sbuf)
     {
-        init(&m_sbuf);
+        this->init(&m_sbuf);
     };
 };
 
@@ -54,7 +54,7 @@ typedef basic_onullstream<char> nullostream;
 typedef basic_onullstream<wchar_t> wnullostream;
 
 /*
- * Declares a null ostream object.
+ * Declares a null ostream object. Use this in place of cout, cerr or clog.
  */
 nullostream nout;
 
