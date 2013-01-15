@@ -1,4 +1,4 @@
-#ifndef _NULLOSTREAM_HPP_
+#if !defined(_NULLOSTREAM_HPP_)
 #define _NULLOSTREAM_HPP_
 
 #include <streambuf>
@@ -56,6 +56,7 @@ typedef basic_onullstream<wchar_t> wnullostream;
 /*
  * Declares a null ostream object. Use this in place of cout, cerr or clog.
  */
+extern nullostream nout;
 nullostream nout;
 
 };

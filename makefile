@@ -1,5 +1,5 @@
-CC = g++
-CFLAGS = -Wall -g -I . -I inc/
+CXX ?= c++
+CXXFLAGS ?= -Wall -g -I . -I inc/
 
 BIN = bin/test.bin
 ARGS = 
@@ -30,11 +30,11 @@ memcheck : bin
 $(BIN) : $(OBJ_FILES) $(DEPS)
 	@ echo "Compiling binary"
 	@- mkdir -p bin
-	$(CC) -o $@ $(OBJ_FILES) $(CFLAGS)
+	$(CXX) -o $@ $(OBJ_FILES) $(CXXFLAGS)
 	@ echo
 
 obj/%.o : src/%.cpp $(DEPS)
 	@ echo "Creating object file: " $@
 	@- mkdir -p obj
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CXX) -c -o $@ $< $(CXXFLAGS)
 	@ echo
