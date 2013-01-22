@@ -1,5 +1,5 @@
 CXX ?= c++
-CXXFLAGS ?= -Wall -g -I . -I inc/
+CXXFLAGS ?= -ansi -g -Wall -I . -I inc/
 
 BIN = bin/test.bin
 ARGS = 
