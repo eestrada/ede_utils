@@ -1,6 +1,7 @@
 #include <iostream>
 #include "edelist.hpp"
 #include "nullstream.hpp"
+#include "string.hpp"
 
 using ede::nout;
 using std::cout;
@@ -25,6 +26,12 @@ int main(void)
     cprint(nout, "\nThis should not print.\n\n");
     cprint(test, "\nWhat will this print?\n\n");
 
+    ede::string teststr = "Test text.";
+    ede::string teststr2 = "New text.";
+    
+    teststr = "Test text.";
+
+    teststr = teststr2;
 //    cout << "This is the default program." << endl;
 }
 
