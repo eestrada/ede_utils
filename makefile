@@ -4,7 +4,7 @@ CXXFLAGS ?= -Wall -g -I . -I inc/
 BIN = bin/test.bin
 ARGS = 
 OBJ_FILES = obj/main.o
-DEPS = inc/nullstream.hpp inc/edelist.hpp
+DEPS = inc/nullstream.hpp inc/edelist.hpp inc/string.hpp
 
 .PHONY : run bin test clean memcheck
 
