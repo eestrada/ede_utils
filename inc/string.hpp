@@ -1,7 +1,7 @@
 #if !defined(_STRING_HPP_)
 #define _STRING_HPP_
 
-#include <iostream>
+#include "ostream.hpp"
 
 namespace ede
 {
@@ -14,7 +14,7 @@ namespace ede
 #endif // defined NULL
 
 template < typename T >
-class base_string
+class basic_string
 {
 private:
     T *_strptr;
@@ -51,12 +51,12 @@ private:
 public:
     static const size_t npos = -1;
 public:
-    base_string() : _strptr(NULL), _len(0), _capacity(0) {}
+    basic_string() : _strptr(NULL), _len(0), _capacity(0) {}
     
-    base_string(const base_string<T> &other) : 
+    basic_string(const basic_string<T> &other) : 
     _strptr(NULL), _len(0), _capacity(0)
     {
-//        std::cerr << "base_string Constructor.\n";
+//        std::cerr << "basic_string Constructor.\n";
         if(this == &other) return;
 
         this->_len = other._len;
@@ -67,19 +67,19 @@ public:
         this->_strcopy(other._strptr, this->_strptr);
     }
     
-    base_string<T> & operator=(const base_string<T> &other)
+    basic_string<T> & operator=(const basic_string<T> &other)
     {
-//        std::cerr << "base_string assignment.\n";
+//        std::cerr << "basic_string assignment.\n";
         if(this == &other) return *this;
 
-        base_string<T> tmp(other);
+        basic_string<T> tmp(other);
 
-        base_string<T>::swap(*this, tmp);
+        basic_string<T>::swap(*this, tmp);
 
         return *this;
     }
 
-    base_string(const T *other) : _strptr(NULL), _len(0), _capacity(0)
+    basic_string(const T *other) : _strptr(NULL), _len(0), _capacity(0)
     {
 //        std::cerr << "char * Constructor.\n";
         if(this->_strptr == other) return;
@@ -92,7 +92,7 @@ public:
         this->_strcopy(other, this->_strptr);
     }
 
-    base_string<T> & operator=(const T *other)
+    basic_string<T> & operator=(const T *other)
     {
 //        std::cerr << "char * assignment.\n";
         if(this->_strptr == other) return *this;
@@ -106,14 +106,14 @@ public:
             return *this;
         }
         // Otherwise allocate new space and delete the old space.
-        base_string<T> tmp(other);
+        basic_string<T> tmp(other);
 
-        base_string<T>::swap(*this, tmp);
+        basic_string<T>::swap(*this, tmp);
 
         return *this;
     }
 
-    ~base_string()
+    ~basic_string()
     {
 /*        if(this->_len)
             std::cerr << "String with a value of '" << this->_strptr << "' being deleted.\n";
@@ -124,7 +124,7 @@ public:
         this->_strptr = NULL;
     }
 
-    static void swap(base_string <T> & lha, base_string <T> & rha)
+    static void swap(basic_string <T> & lha, basic_string <T> & rha)
     {
         T *tmp_str_ptr = lha._strptr;
         size_t tmp_len = lha._len;
@@ -144,9 +144,9 @@ public:
     size_t capacity() const {return this->_capacity;}
     bool empty() const {return !(this->size());}
 
-    base_string<T> & operator+=(const base_string<T> &other)
+    basic_string<T> & operator+=(const basic_string<T> &other)
     {
-        base_string<T> workstr(other);
+        basic_string<T> workstr(other);
         size_t s = (workstr.size() + this->size());
         if(s >= this->capacity())
         {
@@ -166,9 +166,9 @@ public:
         return *this;
     }
 
-    base_string<T> & operator+=(const T *other)
+    basic_string<T> & operator+=(const T *other)
     {
-        base_string<T> tmp(other);
+        basic_string<T> tmp(other);
 
         this->operator+=(tmp);
 
@@ -205,26 +205,28 @@ public:
 
         return this->_strptr[index];
     }
-};// End of base_string template class
+};// End of basic_string template class
 
-typedef base_string<char> string;
-typedef base_string<wchar_t> wstring;
+typedef basic_string<char> string;
+typedef basic_string<wchar_t> wstring;
 
 }// End namespace "ede"
 
 template < typename U >
-std::ostream & operator<<(std::ostream & out, const ede::base_string<U> &str)
+ede::ostream & operator<<(ede::ostream & out, const ede::basic_string<U> &str)
 {
     out << str.c_str();
     return out;
 }
 
+/*
 template < typename U >
-std::istream & operator>>(std::istream & in, ede::base_string<U> &str)
+std::istream & operator>>(std::istream & in, ede::basic_string<U> &str)
 {
     U cstr[2048];
     in >> cstr;
     str = cstr;
     return in;
 }
+*/
 #endif // defined _STRING_HPP_

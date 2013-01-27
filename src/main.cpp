@@ -1,50 +1,22 @@
-#include <iostream>
-#include "edelist.hpp"
-#include "nullstream.hpp"
+//#include "edelist.hpp"
+//#include "nullstream.hpp"
+#include "ostream.hpp"
 #include "string.hpp"
 
-using ede::nout;
-using std::cout;
-using std::cerr;
-using std::cin;
-using std::endl;
 using namespace ede;
-
-void cprint(std::ostream &strm, const char *s)
-{
-    strm << s;
-}
 
 int main(void)
 {   
-    std::ostream *strmPtr;
-    if(true)
-        strmPtr = &cerr;
-    else
-        strmPtr = &nout;
-
-    std::ostream &test = *strmPtr;
-    cprint(cout, "\nThis should print.\n\n");
-    cprint(nout, "\nThis should not print.\n\n");
-    cprint(test, "\nWhat will this print?\n\n");
+    string teststr = "Test string one.\n";
+    string teststr2 = "Test string two.\n";
     
-    cout << "\nwstring::npos = " << wstring::npos << endl;
-
-    ede::string teststr = "Test text.";
-    ede::string teststr2 = "New text.";
-    teststr2 += " Plus some more text!\n";
-    
-    teststr = "Test text.";
-
-    teststr = teststr2;
     cout << teststr;
-    cout << "Type a string in: ";
-    cin >> teststr2;
-    cout << "You typed: " << teststr2 << endl;
+    cerr << teststr2;
 
-    cout << "The first character you typed is: " << teststr2.at(0) << endl;
+    cout << "\nThis should print to stdout.\n\n";
+    cerr << "\nThis should print to stderr.\n\n";
 
-
-//    cout << "This is the default program." << endl;
+    cout << 400 << "\n\n";
+    cout << 400.0 << "\n\n";
 }
 
